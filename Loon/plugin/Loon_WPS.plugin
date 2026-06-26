@@ -9,13 +9,14 @@
 
 [Argument]
 CaptureCookie=switch, false, true, tag=捕获Cookie, desc = 此开关控制插件是否捕获Cookie
+CaptureCron=switch, true, false, tag=定时任务, desc = 此开关控制插件是否开启定时任务
 inputCron=input, "0 10 * * *", tag=定时参数
 
 [Script]
 # 捕获Cookie
 http-request ^https:\/\/personal-act\.wps\.cn\/activity-rubik\/activity\/page_info script-path=https://raw.githubusercontent.com/MaYIHEI/paperclip/refs/heads/main/app/wps/wps.cookie.js, tag=WPS Cookie, timeout=60, requires-body=false, enable = {CaptureCookie}
 # 定时任务
-cron {inputCron} script-path=https://raw.githubusercontent.com/MaYIHEI/paperclip/refs/heads/main/app/wps/wps.js, timeout=120, tag=WPS签到
+cron {inputCron} script-path=https://raw.githubusercontent.com/MaYIHEI/paperclip/refs/heads/main/app/wps/wps.js, timeout=120, tag=WPS签到, enable = {CaptureCron}
 
 [MITM]
 hostname = personal-act.wps.cn
