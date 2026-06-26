@@ -1,20 +1,21 @@
 #!name=wps签到
-#!desc=WPS每日签到并兑换会员，需要进入此插件的主页链接，阅读使用说明操作
-#!author=插件作者
-#!homepage=插件的主页
+#!desc= 打开「WPS」APP → 进任意活动页(任务中心/福利中心)→ 自动触发 page_info,抓 wps_sid，cron 10 点触发,抢完限量爆款顺手做签到等其余任务,逐个串行、动作间随机间隔
+#!author=MaYIHEI
+#!homepage=https://github.com/MaYIHEI/paperclip
 #!icon=https://s21.ax1x.com/2024/11/14/pAgrz6S.png
+# https://raw.githubusercontent.com/MaYIHEI/pin/refs/heads/main/app/wps.png
 #!loon_version=最低Loon版本: 3.2.4(787)
 #!tag=签到
 
 [Argument]
 CaptureCookie=switch, false, true, tag=捕获Cookie, desc = 此开关控制插件是否捕获Cookie
-inputCron=input, "1 0 * * *", tag=定时参数
+inputCron=input, "0 10 * * *", tag=定时参数
 
 [Script]
 # 捕获Cookie
-http-request ^https:\/\/(vip|account)(userinfo|\.wps\.cn\/p\/auth\/check)$ script-path = https://raw.githubusercontent.com/wf021325/qx/master/task/wps.js, timeout=60, requires-body = true, tag = 捕获Cookie, enable = {CaptureCookie}
+http-request ^https:\/\/personal-act\.wps\.cn\/activity-rubik\/activity\/page_info script-path=https://raw.githubusercontent.com/MaYIHEI/paperclip/refs/heads/main/app/wps/wps.cookie.js, tag=WPS Cookie, timeout=60, requires-body=false, enable = {CaptureCookie}
 # 定时任务
-cron {inputCron} script-path=https://raw.githubusercontent.com/wf021325/qx/master/task/wps.js, timeout=120, tag=WPS_PC签到
+cron {inputCron} script-path=https://raw.githubusercontent.com/MaYIHEI/paperclip/refs/heads/main/app/wps/wps.js, timeout=120, tag=WPS签到
 
 [MITM]
-hostname = *.wps.cn
+hostname = personal-act.wps.cn
