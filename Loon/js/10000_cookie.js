@@ -1,6 +1,6 @@
 /*
 
-获取方式：打开 https://e.dlife.cn/index.do 登录
+获取方式：打开 https://e.dlife.cn/wap/mine/showIndex.do#/ 登录
 ===================
 [MITM]
 hostname = e.dlife.cn
@@ -24,7 +24,7 @@ http-request ^https:\/\/e\.dlife\.cn\/ tag=电信Cookie抓取, script-path=https
 
 */
 
-const APIKey = "yy_10010";
+const APIKey = 'YaYa_10000';
 const $ = new API(APIKey, true);
 if ($request) GetCookie();
 
@@ -35,9 +35,9 @@ function GetCookie() {
     $.notify(`中国电信`, `Cookie 获取成功`, ck.slice(0, 60) + "...");
     $.info(`完整 Cookie：${ck}`);
   }
+  $.done();
 }
 
-$.done();
 
 /* prettier-ignore */
 function ENV(){const isJSBox=typeof require=="function"&&typeof $jsbox!="undefined";return{isQX:typeof $task!=="undefined",isLoon:typeof $loon!=="undefined",isSurge:typeof $httpClient!=="undefined"&&typeof $utils!=="undefined",isBrowser:typeof document!=="undefined",isNode:typeof require=="function"&&!isJSBox,isJSBox,isRequest:typeof $request!=="undefined",isScriptable:typeof importModule!=="undefined",isShadowrocket:"undefined"!==typeof $rocket,isStash:"undefined"!==typeof $environment&&$environment["stash-version"]}}
