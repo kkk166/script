@@ -13,16 +13,14 @@ CaptureDownMusic=switch, false, true, tag=酷狗音乐下载, desc = 此开关�
 
 [Script]
 # 定时任务
-cron {inputCron} script-path=https://gist.githubusercontent.com/Alex0510/8b958bcf53ed1271e03bb5130b2206ec/raw/kugou_vip.js, tag=酷狗领取VIP
+cron ${inputCron} then script("https://gist.githubusercontent.com/Alex0510/8b958bcf53ed1271e03bb5130b2206ec/raw/kugou_vip.js") with tag="酷狗领取VIP"
 # 酷狗数据
-http-request https://(gateway|gatewayretry|gateway3).kugou.com/youth/v1/activity/get_month_vip_record.* script-path=https://gist.githubusercontent.com/Alex0510/8b958bcf53ed1271e03bb5130b2206ec/raw/kugou_cookie.js, tag=酷狗数据, enable = {CaptureCookie} 
+request if ${url} ~= /https:\/\/(gateway|gatewayretry|gateway3).kugou.com\/youth\/v1\/activity\/get_month_vip_record.*/i then script("https://gist.githubusercontent.com/Alex0510/8b958bcf53ed1271e03bb5130b2206ec/raw/kugou_cookie.js") with enable=${CaptureCookie}, tag="酷狗数据" 
 # 酷狗去广告
-http-response (https?:\/\/)?.*\.kugou\.com\/((v1\/(get_union_vip|vipuser_sub|get_res_privilege)|mobile\/vipinfo|kugouvip\/v[12]\/batch_union_vipinfo)|pendant/v2/(set_user_pendan|get_pendant_list)).* script-path=https://gist.githubusercontent.com/Alex0510/8b958bcf53ed1271e03bb5130b2206ec/raw/kugou_ad.js, requires-body=true, tag=酷狗去广告, enable = {CaptureRemoveAds} 
+response if ${url} ~= /(https?:\/\/)?.*\.kugou\.com\/((v1\/(get_union_vip|vipuser_sub|get_res_privilege)|mobile\/vipinfo|kugouvip\/v[12]\/batch_union_vipinfo)|pendant\/v2\/(set_user_pendan|get_pendant_list)).*/i then script("https://gist.githubusercontent.com/Alex0510/8b958bcf53ed1271e03bb5130b2206ec/raw/kugou_ad.js") with enable=${CaptureRemoveAds}, tag="酷狗去广告", requires_body=true 
 # 酷狗音乐下载
-http-response https://gateway.kugou.com/tracker/v5/url\?album_audio_id script-path=https://gist.githubusercontent.com/Alex0510/8b958bcf53ed1271e03bb5130b2206ec/raw/mediadownload.js, requires-body=true, tag=音乐下载, enable = {CaptureDownMusic} 
+response if ${url} ~= /https:\/\/gateway.kugou.com\/tracker\/v5\/url\?album_audio_id/i then script("https://gist.githubusercontent.com/Alex0510/8b958bcf53ed1271e03bb5130b2206ec/raw/mediadownload.js") with enable=${CaptureDownMusic}, tag="音乐下载", requires_body=true 
 
 
 [MITM]
 hostname = *.kugou.com
-
-
