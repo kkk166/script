@@ -7,9 +7,9 @@
 
 [Argument]
 inputCron=input, "10 0 * * *", tag=定时参数
-CaptureCookie=switch, false, true, tag=酷狗数据, desc = 此开关控制插件是否捕获数据
-CaptureRemoveAds=switch, false, true, tag=酷狗去广告, desc = 此开关控制插件是否去广告
-CaptureDownMusic=switch, false, true, tag=酷狗音乐下载, desc = 此开关控制插件是否下载音乐
+CaptureCookie=switch, false, tag=酷狗数据, desc = 此开关控制插件是否捕获数据
+CaptureRemoveAds=switch, true, tag=酷狗去广告, desc = 此开关控制插件是否去广告
+CaptureDownMusic=switch, false, tag=酷狗音乐下载, desc = 此开关控制插件是否下载音乐
 
 [Script]
 # 定时任务
