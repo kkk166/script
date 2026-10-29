@@ -6,7 +6,7 @@
 #!tag=签到
 
 [Argument]
-CaptureCookie=switch, false, true, tag=捕获Cookie, desc = 此开关控制插件是否捕获Cookie
+CaptureCookie=switch, false, tag=捕获Cookie, desc = 此开关控制插件是否捕获Cookie
 inputCron=input, "6 19 * * *", tag=定时参数
 
 [Script]
