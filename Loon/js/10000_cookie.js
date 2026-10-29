@@ -1,27 +1,5 @@
 /*
-
-获取方式：打开 https://e.dlife.cn/wap/mine/showIndex.do#/ 登录
-===================
-[MITM]
-hostname = e.dlife.cn
-
-【Surge脚本配置】:
-===================
-[Script]
-电信Cookie抓取 = type=http-request,pattern=^https:\/\/e\.dlife\.cn\/,requires-body=0,max-size=0,script-path=https://raw.githubusercontent.com/kkk166/script/refs/heads/main/Loon/js/10000_cookie.js,script-update-interval=0
-
-===================
-【Loon脚本配置】:
-===================
-[Script]
-http-request ^https:\/\/e\.dlife\.cn\/ tag=电信Cookie抓取, script-path=https://raw.githubusercontent.com/kkk166/script/refs/heads/main/Loon/js/10000_cookie.js
-
-===================
-【 QX 脚本配置 】:
-===================
-[rewrite_local]
-^https:\/\/e\.dlife\.cn\/ url script-request-header https://raw.githubusercontent.com/kkk166/script/refs/heads/main/Loon/js/10000_cookie.js
-
+* 获取方式：打开 https://e.dlife.cn/wap/mine/showIndex.do#/ 登录
 */
 
 const APIKey = 'YaYa_10000';
